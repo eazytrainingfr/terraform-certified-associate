@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "myec2" {
-  ami           = "ami-0057d8e6fb0692b80"
+  ami           = "ami-00e87074e52e6c9f9"
   instance_type = var.list[0]
 }
 
