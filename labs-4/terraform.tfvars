@@ -1,3 +1,3 @@
-elb_name="myelb"
-timeout="400"
-az=["us-west-1a","us-east-1b"]
+elb_name = "myelb"
+timeout  = "400"
+subnet   = ["subnet-id", "subnet-2"] # your subnets must be in different availability zones
