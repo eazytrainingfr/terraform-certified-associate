@@ -1,16 +1,23 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
 provider "aws" {
   region     = "us-east-1"
   access_key = "PUT YOUR OWN"
   secret_key = "PUT YOUR OWN"
-  #version = "2.7"
 }
 
 resource "aws_eip" "lb" {
-  vpc = true
+  domain   = "vpc"
 }
 
 output "eip" {
-  value = aws_eip.lb.id
+  value = aws_eip.lb
 }
 
 resource "aws_s3_bucket" "mys3" {
