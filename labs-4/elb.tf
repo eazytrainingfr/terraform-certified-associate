@@ -15,11 +15,11 @@ provider "aws" {
 }
 
 resource "aws_lb" "bar" {
-  name               = var.elb_name
+  name    = var.elb_name
   subnets = var.subnets
 
   enable_cross_zone_load_balancing = true
-  idle_timeout = var.timeout
+  idle_timeout                     = var.timeout
 
   tags = {
     Name = "foobar-terraform-elb"
@@ -41,7 +41,7 @@ resource "aws_lb_target_group" "bar-target-group" {
   name     = "bar-tg"
   port     = 8000
   protocol = "HTTP"
-  vpc_id = "YOUR VPC ID"
+  vpc_id   = "YOUR VPC ID"
 
   health_check {
     path                = "/"

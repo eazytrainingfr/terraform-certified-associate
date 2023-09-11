@@ -3,7 +3,7 @@ variable "elb_name" {
 }
 
 variable "subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "timeout" {
