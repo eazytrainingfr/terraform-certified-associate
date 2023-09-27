@@ -1,3 +1,13 @@
+# Note: terraform console permet de tester rapidement certaines fonctions
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
 provider "aws" {
   region     = var.region
   access_key = "PUT YOUR OWN"
@@ -13,15 +23,15 @@ variable "region" {
 }
 
 variable "tags" {
-  type = list
-  default = ["firstec2","secondec2"]
+  type    = list(any)
+  default = ["firstec2", "secondec2"]
 }
 
 variable "ami" {
-  type = map
+  type = map(any)
   default = {
-    "us-east-1" = "ami-0323c3dd2da7fb37d"
-    "us-west-2" = "ami-0d6621c01e8c2de2c"
+    "us-east-1"  = "ami-0323c3dd2da7fb37d"
+    "us-west-2"  = "ami-0d6621c01e8c2de2c"
     "ap-south-1" = "ami-0470e33cd681b2476"
   }
 }
@@ -32,16 +42,14 @@ resource "aws_key_pair" "loginkey" {
 }
 
 resource "aws_instance" "app-dev" {
-   ami = lookup(var.ami,var.region)
-   instance_type = "t2.micro"
-   key_name = aws_key_pair.loginkey.key_name
-   count = 2
-
-   tags = {
-     Name = element(var.tags,count.index)
-   }
+  ami           = lookup(var.ami, var.region) # lookup permet de parcourir une map
+  instance_type = "t2.micro"
+  key_name      = aws_key_pair.loginkey.key_name
+  count         = 2
+  tags = {
+    Name = element(var.tags, count.index) # element permet de parcourir une liste
+  }
 }
-
 
 output "timestamp" {
   value = local.time
