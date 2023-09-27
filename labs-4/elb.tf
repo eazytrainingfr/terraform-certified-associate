@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
 provider "aws" {
   region     = "us-east-1"
   access_key = "PUT YOUR OWN"
@@ -5,31 +14,42 @@ provider "aws" {
   #version = "2.7"
 }
 
-resource "aws_elb" "bar" {
-  name               = var.elb_name
-  availability_zones = var.az
+resource "aws_lb" "bar" {
+  name    = var.elb_name
+  subnets = var.subnets
 
-  listener {
-    instance_port     = 8000
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
-  }
-
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "HTTP:8000/"
-    interval            = 30
-  }
-
-  cross_zone_load_balancing   = true
-  idle_timeout                = var.timeout
-  connection_draining         = true
-  connection_draining_timeout = var.timeout
+  enable_cross_zone_load_balancing = true
+  idle_timeout                     = var.timeout
 
   tags = {
     Name = "foobar-terraform-elb"
+  }
+}
+
+resource "aws_lb_listener" "bar_listener" {
+  load_balancer_arn = aws_lb.bar.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.bar-target-group.arn
+  }
+}
+
+resource "aws_lb_target_group" "bar-target-group" {
+  name     = "bar-tg"
+  port     = 8000
+  protocol = "HTTP"
+  vpc_id   = "YOUR VPC ID"
+
+  health_check {
+    path                = "/"
+    protocol            = "HTTP"
+    matcher             = "200"
+    interval            = 30
+    timeout             = 3
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
   }
 }

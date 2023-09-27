@@ -2,7 +2,7 @@ variable "elb_name" {
   type = string
 }
 
-variable "az" {
+variable "subnets" {
   type = list
 }
 
