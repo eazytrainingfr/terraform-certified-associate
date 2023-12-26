@@ -1,8 +1,9 @@
-#### Configure your environment
+<h1>Configure your environment</h1>
 
 1. Prerequise:  
 Azure Subscription  
 Azure CLI  
+
 2. Authenticate Terraform to Azure  
 
 <h1>Authenticate to Azure via a Microsoft account:</h1>
