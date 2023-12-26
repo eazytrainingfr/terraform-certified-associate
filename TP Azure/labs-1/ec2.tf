@@ -41,11 +41,11 @@ resource "azurerm_network_interface" "vm_ni" {
   ip_configuration {
     name                          = "testconfiguration1"
     subnet_id                     = azurerm_subnet.Eazy_subnet.id
-    private_ip_address_allocation = "Static"
+    private_ip_address_allocation = "Dynamic"
   }
 }
 
-resource "azurerm_virtual_machine" "eazy_vm" {
+resource "azurerm_virtual_machine" "Eazy_vm" {
   name                  = "Eazy-vm"
   location              = "West Europe"
   resource_group_name   = azurerm_resource_group.Eazy_rg.name
