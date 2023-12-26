@@ -6,7 +6,7 @@ Azure CLI
 
 2. Authenticate Terraform to Azure  
 
-<h1>Authenticate to Azure via a Microsoft account:</h1>
+<h3>Authenticate to Azure via a Microsoft account:</h3>
 
 
 * Open a command line that has access to the Azure CLI
