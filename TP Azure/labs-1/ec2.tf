@@ -72,8 +72,8 @@ resource "azurerm_virtual_machine" "Eazy_vm" {
   }
   os_profile {
     computer_name  = "hostname"
-    admin_username = "franklin"
-    admin_password = "Eazytraining1234!"
+    admin_username = "your_username"
+    admin_password = "your_password"
   }
   os_profile_linux_config {
     disable_password_authentication = false
