@@ -1,4 +1,4 @@
 #### Configure your environment
 
-1. Prerequise:
+1. Prerequise:  
 Azure Subscription
