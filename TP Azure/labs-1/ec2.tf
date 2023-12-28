@@ -14,41 +14,41 @@ provider "azurerm" {
 }
 
 # Create a resource group
-resource "azurerm_resource_group" "Eazy_rg" {
+resource "azurerm_resource_group" "eazy_rg" {
   name     = "eazytraining-rg"
   location = "West Europe"
 }
 
-resource "azurerm_virtual_network" "Eazy_network" {
-  name                = "Eazy-network"
+resource "azurerm_virtual_network" "eazy_network" {
+  name                = "eazy-network"
   address_space       = ["10.0.0.0/16"]
   location            = "West Europe"
-  resource_group_name = azurerm_resource_group.Eazy_rg.name
+  resource_group_name = "eazytraining-rg"
 }
 
-resource "azurerm_subnet" "Eazy_subnet" {
+resource "azurerm_subnet" "eazy_subnet" {
   name                 = "internal"
-  resource_group_name  = azurerm_resource_group.Eazy_rg.name
-  virtual_network_name = azurerm_virtual_network.Eazy_network.name
+  resource_group_name  = "eazytraining-rg"
+  virtual_network_name = "eazy-network"
   address_prefixes     = ["10.0.2.0/24"]
 }
 
 resource "azurerm_network_interface" "vm_ni" {
   name                = "vm-nic"
   location            = "West Europe"
-  resource_group_name = azurerm_resource_group.Eazy_rg.name
+  resource_group_name = "eazytraining-rg"
 
   ip_configuration {
     name                          = "testconfiguration1"
-    subnet_id                     = azurerm_subnet.Eazy_subnet.id
+    subnet_id                     = azurerm_subnet.eazy_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
-resource "azurerm_virtual_machine" "Eazy_vm" {
-  name                  = "Eazy-vm"
+resource "azurerm_virtual_machine" "eazy_vm" {
+  name                  = "eazy-vm"
   location              = "West Europe"
-  resource_group_name   = azurerm_resource_group.Eazy_rg.name
+  resource_group_name   = "eazytraining-rg"
   network_interface_ids = [azurerm_network_interface.vm_ni.id]
   vm_size               = "Standard_DS1_v2"
 
@@ -72,8 +72,8 @@ resource "azurerm_virtual_machine" "Eazy_vm" {
   }
   os_profile {
     computer_name  = "hostname"
-    admin_username = "your_username"
-    admin_password = "your_password"
+    admin_username = "franklin"
+    admin_password = "Franklin123@"
   }
   os_profile_linux_config {
     disable_password_authentication = false
