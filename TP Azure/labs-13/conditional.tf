@@ -25,4 +25,6 @@ resource "azurerm_resource_group" "prod" {
   location = "West Europe"
 }
 
-variable "istest" {}
+variable "istest" {
+    
+}
