@@ -1,1 +1,0 @@
-provider "k8s" {}
