@@ -1,0 +1,3 @@
+variable "istest" {
+  type = bool
+}

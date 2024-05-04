@@ -1,0 +1,3 @@
+#### https://developer.hashicorp.com/terraform/language/meta-arguments/count
+
+Par défaut, un bloc de ressource configure un seul objet d'infrastructure réel. (De même, un bloc de module inclut une fois les contenus d'un module enfant dans la configuration.) Cependant, parfois, vous souhaitez gérer plusieurs objets similaires (comme un pool fixe d'instances de calcul) sans écrire un bloc séparé pour chacun. Terraform propose deux façons de le faire : count et for_each. Si un bloc de ressource ou de module inclut un argument count dont la valeur est un nombre entier, Terraform créera autant d'instances.

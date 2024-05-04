@@ -1,0 +1,3 @@
+#### https://developer.hashicorp.com/terraform/language/values/locals
+
+Un local value attribue un nom à une expression, de sorte que vous pouvez utiliser le nom plusieurs fois au sein d'un module au lieu de répéter l'expression. Si vous êtes familier avec les langages de programmation traditionnels, il peut être utile de comparer les modules Terraform aux définitions de fonctions : les variables d'entrée sont comme les arguments de fonction, les valeurs de sortie sont comme les valeurs de retour de fonction, et les valeurs locales sont comme les variables locales temporaires d'une fonction.

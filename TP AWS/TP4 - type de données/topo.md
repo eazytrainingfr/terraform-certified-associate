@@ -1,0 +1,3 @@
+#### https://developer.hashicorp.com/terraform/language/expressions/types
+
+"Types and Values" se réfère aux différents types de données disponibles dans le langage Terraform. Il utilise des types tels que string (chaîne de caractères), number (nombre), bool (booléen), list (ou tuple), set (ensemble) et map (ou objet) pour représenter les valeurs. Ces types déterminent où et comment les valeurs peuvent être utilisées et les transformations qui peuvent leur être appliquées. De plus, il existe une valeur spéciale, null, qui représente l'absence ou l'omission et est utile dans les expressions conditionnelles.
